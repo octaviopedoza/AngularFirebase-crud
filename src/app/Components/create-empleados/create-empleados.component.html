@@ -1,0 +1,42 @@
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-body">
+            <div class="card-header">
+                <h3>{{titulo}}
+                    <span *ngIf="submitted && createEmpleado.invalid" class="badge text-bg-danger float-end">Todos los campos son obligatorios</span>
+                    <div *ngIf="loading" class="spinner-border float-end" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </h3>
+            </div>
+            
+<!--Conectamos el formulario con el creado dentro del componente usando la directiva [formGroup] y pasandola variable que 
+creamos dentro del componente "createEmpleado()".
+Ademas de que usaremos la directiva (ngSubmit) la cual sera igual a un metodo creado dentro del componente para guardar los datos
+pasados por el formulario.-->
+            <form class="p-4" [formGroup]="createEmpleado" (ngSubmit)="agregarEditarEmpleado()">
+                <div class="row">
+                    <div class="row p-2">
+<!-- Para conectar cada uno de nuestros campos del formulario a nustro formGroup vamos a utilizar la directiva formControlName y le 
+pasamos el nombre de la variable a asignar-->
+                        <input type="text" class="form-control form-control-lg"
+                        formControlName="nombre" placeholder="Ingresa el nombre del empleado">
+                    </div>
+                    <div class="row p-2">
+                        <input type="text" class="form-control form-control-lg" 
+                        formControlName="apellido" placeholder="Ingresa el apellido del empleado">
+                    </div>
+                    <div class="row p-2">
+                        <input type="text" class="form-control form-control-lg" 
+                        formControlName="puesto" placeholder="Ingresa el puesto del empleado">
+                    </div>
+                    <div class="mt-4 text-center">
+                        <button type="text" class="btn btn-secondary btn-lg m-3" [routerLink]="['/list-empleados']">Volver</button>
+                        <button type="submit" class="btn btn-dark btn-lg">Agregar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
